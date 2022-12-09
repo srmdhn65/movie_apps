@@ -4,6 +4,7 @@ import 'package:movieapp_test_sandi_romadon/controller/dashboardcontroller.dart'
 import 'package:movieapp_test_sandi_romadon/screen/details.dart';
 import 'package:movieapp_test_sandi_romadon/screen/widget/drawer.dart';
 import 'package:movieapp_test_sandi_romadon/screen/widget/now_playing.dart';
+import 'package:movieapp_test_sandi_romadon/screen/widget/shimmer_now_playing.dart';
 import 'package:movieapp_test_sandi_romadon/screen/widget/top_rated.dart';
 import 'package:movieapp_test_sandi_romadon/utils/styles.dart';
 
@@ -88,19 +89,28 @@ class _DashoboardScreenState extends State<DashoboardScreen> {
                   color: Colors.transparent,
                   height: Get.height * 0.4,
                   width: Get.width,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.nowPlayingList.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var result = controller.nowPlayingList[index];
-                        return InkWell(
-                            onTap: () {
-                              Get.to(() =>
-                                  MovieDetailScreen(id: result.id.toString()));
-                            },
-                            child: NowPlayingCard(result: result));
-                      }),
+                  child: controller.isLoading
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 5,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                                onTap: () {}, child: ShimmerNowPlaying());
+                          })
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller.nowPlayingList.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            var result = controller.nowPlayingList[index];
+                            return InkWell(
+                                onTap: () {
+                                  Get.to(() => MovieDetailScreen(
+                                      id: result.id.toString()));
+                                },
+                                child: NowPlayingCard(result: result));
+                          }),
                 ),
                 const SizedBox(
                   height: 20,
@@ -133,14 +143,23 @@ class _DashoboardScreenState extends State<DashoboardScreen> {
                   color: Colors.transparent,
                   height: Get.height * 0.3,
                   width: Get.width,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.topRatedList.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var result = controller.topRatedList[index];
-                        return TopRatedCard(result: result);
-                      }),
+                  child: controller.isLoading
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 5,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                                onTap: () {}, child: ShimmerNowPlaying());
+                          })
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller.topRatedList.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            var result = controller.topRatedList[index];
+                            return TopRatedCard(result: result);
+                          }),
                 ),
               ],
             );

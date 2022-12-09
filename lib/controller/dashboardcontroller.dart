@@ -36,9 +36,8 @@ class DashboardController extends GetxController {
       loadingDetail = true;
       var detail = await dashboardServices.getMovieDetail(id);
       detailMovie = detail;
-      // var video = await dashboardServices.getMovie(id);
-      // videosdata = video;
-      print(detailMovie.toJson());
+      var video = await dashboardServices.getMovie(id);
+      videosdata = video;
       loadingDetail = false;
       update();
     } catch (e) {

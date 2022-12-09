@@ -34,7 +34,10 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.5
   intl: ^0.17.0
-  youtube_player_iframe: ^3.0.4
+  shimmer: ^2.0.0
+  video_player: ^2.4.9
+  youtube: ^1.0.1
+  youtube_player_flutter: ^8.1.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

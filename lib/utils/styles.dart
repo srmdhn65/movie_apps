@@ -7,4 +7,5 @@ class Style {
   static Color text1Color = Colors.white;
   static Color text2Color = Colors.black;
   static Color text3Color = Colors.grey;
+  static Color shimmer_highlighted = Colors.grey.shade200;
 }

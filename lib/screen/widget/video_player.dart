@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final YoutubePlayerController? controller;
@@ -19,12 +19,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         body: Stack(
           children: <Widget>[
             Center(
-                child: YoutubePlayerControllerProvider(
-              controller: controller,
               child: YoutubePlayer(
+                controller: controller,
+                showVideoProgressIndicator: true,
                 aspectRatio: 16 / 9,
               ),
-            )),
+            ),
             Positioned(
               top: 40.0,
               right: 20.0,
